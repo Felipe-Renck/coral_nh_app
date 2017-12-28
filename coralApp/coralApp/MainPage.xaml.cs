@@ -12,26 +12,14 @@ namespace coralApp
 		public MainPage()
 		{
 			InitializeComponent();
-            WebView webView = new WebView
-            {
-                Source = new UrlWebViewSource
-                {
-                    Url = "https://www.facebook.com/coraljovemnh/",
-                },
-                VerticalOptions = LayoutOptions.FillAndExpand
-            };
 
-            // Accomodate iPhone status bar.
-            this.Padding = new Thickness(10, Device.OnPlatform(20, 0, 0), 10, 5);
+            webView.Source = "https://www.facebook.com/coraljovemnh/";
+        }
 
-            // Build the page.
-            this.Content = new StackLayout
-            {
-                Children =
-                {
-                    webView
-                }
-            };
+        private void WebViewNavigated(object sender, WebNavigatedEventArgs e)
+        {
+            activityIndicator.IsVisible = false;
+            activityIndicator.IsRunning = false;
         }
     }
 }
